@@ -1,7 +1,7 @@
 from configparser import ConfigParser
 from subprocess import Popen,PIPE
 from shlex import split
-from dmLogging import dmLogging
+import logging
 import sys
 
 
@@ -65,8 +65,8 @@ def gitPush():
 
 def gitPrintOut(returncode,stdout,error):
     if returncode != 0 :
-        dmLogging.logging.error(error.decode())
+        ogging.error(error.decode())
         sys.exit(1)
     else:
-        dmLogging.logging.debug(stdout.decode())
+        logging.debug(stdout.decode())
 
