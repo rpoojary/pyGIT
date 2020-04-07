@@ -17,7 +17,7 @@ def handleConfig(gitURL, username, password, repo, mask):
     rConfig.read(repo + "/.git/config")
     if mask:
         rConfig.set('remote \"origin\"', 'url', gitURL.replace("username", username).replace("password",
-                                                                                             password) + "/scm/depmgmt/" + repo + ".git")
+                                                                                             password) + "/" + repo + ".git")
     else:
         rConfig.set('remote \"origin\"', 'url', "NONE")
     with open(repo + "/.git/config", "w") as cFIle:
@@ -25,7 +25,7 @@ def handleConfig(gitURL, username, password, repo, mask):
 
 def gitClone(gitURL, username, password, repo):
     url = gitURL.replace("username", username).replace("password", password)
-    cmd = "git clone " + url + "/scm/depmgmt/" + repo + ".git"
+    cmd = "git clone " + url + "/" + repo + ".git"
     value = Popen(split(cmd), stderr=PIPE, stdin=PIPE, stdout=PIPE)
     stdout, stderr = value.communicate()
     return value.returncode, stderr
